@@ -8,6 +8,7 @@ import edu.eci.cvds.entities.Decanatura;
 import edu.eci.cvds.entities.Materia;
 import edu.eci.cvds.entities.Programa;
 import edu.eci.cvds.persistence.DecanaturaDAO;
+import edu.eci.cvds.persistence.MateriaDAO;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.ProgramaDAO;
 import edu.eci.cvds.services.DecanaturaServices;
@@ -23,6 +24,9 @@ public class DecanaturaServicesImpl implements DecanaturaServices {
 
 	@Inject
 	private ProgramaDAO programaDAO;
+	
+	@Inject
+	private MateriaDAO materiaDao;
 
 	@Override
 	public void crearDecanatura(Decanatura decanatura) throws ServicesException {
@@ -67,8 +71,19 @@ public class DecanaturaServicesImpl implements DecanaturaServices {
 
 	@Override
 	public List<Materia> buscarMateriasPorPrograma(int programaId) throws ServicesException {
+		
+		try {
+			return materiaDao.buscarPorPrograma(programaId);
+		}
+		catch(PersistenceException ex) {
+			throw new ServicesException("Error en la consulta el id del programa no existe",ex);
+		}
+	}
+	
+	public List<Materia> buscarMateriasPorSimilares1(String palabraClave) throws ServicesException{
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
+	
 
 	@Override
 	public List<Materia> buscarMateriasPorSimilares(String palabraClave) throws ServicesException {
@@ -89,6 +104,15 @@ public class DecanaturaServicesImpl implements DecanaturaServices {
 	public Programa buscarPrograma(int programaId) throws ServicesException {
 		try {
 			return programaDAO.buscar(programaId);
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error en la consulta:" + ex.getLocalizedMessage(), ex);
+		}
+	}
+
+	@Override
+	public List<Materia> buscarMateriasPorPrograma() throws ServicesException {
+		try {
+			return materiaDao.buscarTodos();
 		} catch (PersistenceException ex) {
 			throw new ServicesException("Error en la consulta:" + ex.getLocalizedMessage(), ex);
 		}

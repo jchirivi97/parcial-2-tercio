@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.MateriaMapper">
+
+	<resultMap type='Materia' id='MateriaResult'>
+		<id property='mnemonico' column='mnemonico' />
+		<result property='semestre' column='semestre' />
+		<result property='nombre' column='nombre' />
+		<result property='nucleo' column='nucleo' />
+		<result property='creditos' column='creditos' />
+		<association property="programaId" javaType='Programa' resultMap='edu.eci.cvds.persistence.mybatisimpl.mappers.ProgramaMapper.ProgramaResult'></association>
+	</resultMap>
+	
+	<select id='buscarMateriaPorPrograma' resultMap='MateriaResult'>
+		select m.mnemonico, m.nombre, m.nucleo, m.creditos, m.semestre
+		from MATERIA as m
+		where m.programa_id = #{programa}
+	</select>
+
+</mapper>

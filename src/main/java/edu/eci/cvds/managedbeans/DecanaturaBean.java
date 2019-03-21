@@ -16,6 +16,8 @@ import edu.eci.cvds.services.ServicesException;
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "decanaturaBean")
 @RequestScoped
+
+
 public class DecanaturaBean extends BasePageBean {
 
 	@Inject

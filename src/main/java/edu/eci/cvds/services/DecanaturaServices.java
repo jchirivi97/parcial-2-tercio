@@ -69,6 +69,10 @@ public interface DecanaturaServices {
 	 * @return la lista de materias que coinciden
 	 * @throws ServicesException
 	 */
+	
+	public List<Materia> buscarMateriasPorPrograma() throws ServicesException;
+	
+	
 	public List<Materia> buscarMateriasPorSimilares(String palabraClave) throws ServicesException;
 
 	/**

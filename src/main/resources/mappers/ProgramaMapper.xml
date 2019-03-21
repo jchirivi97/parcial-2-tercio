@@ -13,7 +13,8 @@
 		<result property='descripcion' column='descripcion' />
 		<result property='decanaturaId' column='decanatura_id' />
 	</resultMap>
-
+	
+	
 	<select id="buscarPorDecanatura" resultMap="ProgramaResult"
 		parameterType="int">
 		SELECT
@@ -28,6 +29,10 @@
 		<if test="decanatura != null">
 			WHERE p.decanatura_id = #{decanatura}
 		</if>
+	</select>
+	
+	<select id="buscarMateriaPorPrograma" resultMap="ProgramaResult">
+	 	select m.mnemonico, m.nombre, m.nucleo, m.creditos, 
 	</select>
 
 </mapper>

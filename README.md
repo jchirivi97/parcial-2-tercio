@@ -22,6 +22,8 @@ Recuerde que en el formato XML no se puede utilizar '<' y '>', por ejemplo al re
 ## Historia de usuario #1
 
   > **Como** Usuario de la plataforma de la Escuela
+  sddd
+  
   >
   > **Quiero** Poder consultar las materias de un programa específico.
   >
